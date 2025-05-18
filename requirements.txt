@@ -8,4 +8,4 @@ python-multipart==0.0.6
 aioredis
 python-jose
 pika
-aio-pika  # For async RabbitMQ operations 
+aio-pika 
