@@ -182,14 +182,68 @@ rabbitmqctl log_tail
 1. Check consumer logs in terminal
 2. Verify RabbitMQ queues in dashboard
 3. Check email/SMS credentials in .env file
+   
 
+
+### Project Structure
+```trxt
+notification_system/
+│
+├── .env                    # Environment variables (not in git)
+├── .env.example           # Example environment variables template
+├── .gitignore             # Git ignore file
+├── README.md              # Project documentation
+├── requirements.txt       # Python dependencies
+├── commands.md            # Common commands reference
+│
+├── src/                   # Source code directory
+│   ├── __init__.py
+│   ├── main.py           # FastAPI application entry point
+│   ├── rabbitmq_service.py # RabbitMQ connection and operations
+│   │
+│   ├── config/           # Configuration files
+│   │   ├── __init__.py
+│   │   └── settings.py   # App settings and constants
+│   │
+│   ├── models/           # Data models
+│   │   ├── __init__.py
+│   │   └── notifications.py  # Notification models
+│   │
+│   ├── services/         # Business logic
+│   │   ├── __init__.py
+│   │   ├── email_service.py
+│   │   ├── sms_service.py
+│   │   └── notification_service.py
+│   │
+│   └── utils/            # Utility functions
+│       ├── __init__.py
+│       └── helpers.py
+│
+├── static/               # Static files
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── main.js
+│
+├── templates/            # HTML templates
+│   └── index.html       # Frontend interface
+│
+├── tests/               # Test files
+│   ├── __init__.py
+│   ├── test_api.py
+│   └── test_services.py
+│
+└── scripts/             # Utility scripts
+    ├── start_all.bat    # Windows startup script
+    └── start_consumers.py # Consumer startup script
+```
 ## Screenshots
 
 ### RabbitMQ Dashboard
 
-<img src="https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e" width="300" />
-<img src="https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373" width="300" />
-<img src="https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2" width="300" />
+<img src="https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e" width="600" />
+<img src="https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373" width="600" />
+<img src="https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2" width="600" />
 
 ### Frontend Interface
 
