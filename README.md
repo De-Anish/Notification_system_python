@@ -186,23 +186,19 @@ rabbitmqctl log_tail
 ## Screenshots
 
 ### RabbitMQ Dashboard
+
 <img src="https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e" width="300" />
 <img src="https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373" width="300" />
 <img src="https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2" width="300" />
 
 ### Frontend Interface
 
-
-
-
-
-system's frontend interface*
 ![Frontend](https://github.com/user-attachments/assets/6ac7f92c-b59e-467a-9082-eebf5c53497e)
 ![SEND_history](https://github.com/user-attachments/assets/ab3aedc2-fc08-453a-b09f-b0f64f615f23)
 
 ### Email Notification
-*Add screenshot of a received email notification*
-![Email_receved](https://github.com/user-attachments/assets/9e36bee3-ce71-40a6-958e-871dee5522e7)
+<img src="https://github.com/user-attachments/assets/9e36bee3-ce71-40a6-958e-871dee5522e7" width="300" />
+
 ![Notification On email](https://github.com/user-attachments/assets/98c4d7f6-e994-4cb9-9a1a-6c59a61406e6)
 
 ### SMS Notification
