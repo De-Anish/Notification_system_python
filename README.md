@@ -36,7 +36,7 @@ pip install -r requirements.txt
 ```
 
 3. **Environment Setup**
-Create a `.env` file by copying `.env.example`:
+Create a `.env` file by copying `example.env`:
 
 ```env
 # RabbitMQ Configuration
