@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Notification Service</h1>
+        </header>
+
+        <main>
+            <section class="notification-form">
+                <h2>Send Notification</h2>
+                <form id="notificationForm">
+                    <div class="form-group">
+                        <label for="userId">User ID:</label>
+                        <input type="text" id="userId" name="userId" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notification Types:</label>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" name="types" value="email"> Email
+                            </label>
+                            <label>
+                                <input type="checkbox" name="types" value="sms"> SMS
+                            </label>
+                            <label>
+                                <input type="checkbox" name="types" value="in_app"> In-App
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipientEmail">Recipient Email:</label>
+                        <input type="email" id="recipientEmail" name="recipientEmail">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="recipientPhone">Recipient Phone:</label>
+                        <input type="tel" id="recipientPhone" name="recipientPhone" placeholder="+1234567890" pattern="^\+[1-9]\d{1,14}$">
+                        <small class="helper-text">Enter phone number in international format (e.g., +1234567890)</small>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Notification</button>
+                </form>
+            </section>
+
+            <section class="notifications-list">
+                <h2>Recent Notifications</h2>
+                <div class="search-box">
+                    <input type="text" id="searchUserId" placeholder="Enter User ID to view notifications">
+                    <button onclick="fetchNotifications()" class="search-btn">Search</button>
+                </div>
+                <div id="notificationsList" class="notifications-container">
+                    <!-- Notifications will be displayed here -->
+                </div>
+            </section>
+
+            <section class="send-history">
+                <h2>Send History</h2>
+                <button onclick="clearHistory()" class="clear-history-btn">Clear History</button>
+                <div id="sendHistory" class="notifications-container">
+                    <!-- Send history will be displayed here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Base URL of your FastAPI backend
+        const API_URL = 'http://localhost:8000';
+        
+        // Initialize send history from localStorage
+        let sendHistory = JSON.parse(localStorage.getItem('sendHistory') || '[]');
+        
+        // Display initial history
+        displaySendHistory();
+
+        function displaySendHistory() {
+            const historyContainer = document.getElementById('sendHistory');
+            historyContainer.innerHTML = '';
+
+            if (sendHistory.length === 0) {
+                historyContainer.innerHTML = '<p class="no-notifications">No send history available</p>';
+                return;
+            }
+
+            sendHistory.forEach((item, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                
+                const typesBadges = item.types.map(type => 
+                    `<span class="history-type-badge ${type}">${type}</span>`
+                ).join('');
+
+                historyItem.innerHTML = `
+                    <div>
+                        <strong>${item.title}</strong>
+                        <div class="history-timestamp">${new Date(item.timestamp).toLocaleString()}</div>
+                    </div>
+                    <div class="history-types">${typesBadges}</div>
+                    <div>
+                        ${item.recipient_email ? `Email: ${item.recipient_email}<br>` : ''}
+                        ${item.recipient_phone ? `Phone: ${item.recipient_phone}` : ''}
+                    </div>
+                    <div class="history-status ${item.status === 'success' ? 'success' : 'error'}">
+                        ${item.status}
+                    </div>
+                `;
+                
+                historyContainer.appendChild(historyItem);
+            });
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear the send history?')) {
+                sendHistory = [];
+                localStorage.setItem('sendHistory', JSON.stringify(sendHistory));
+                displaySendHistory();
+            }
+        }
+
+        async function sendNotification(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const types = Array.from(form.types)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
+            const data = {
+                user_id: form.userId.value,
+                types: types,
+                title: form.title.value,
+                message: form.message.value,
+                recipient_email: form.recipientEmail.value || null,
+                recipient_phone: form.recipientPhone.value || null
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/notifications`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                // Add to send history
+                const historyItem = {
+                    ...data,
+                    timestamp: new Date().toISOString(),
+                    status: result.ok ? 'success' : 'error'
+                };
+                
+                sendHistory.unshift(historyItem); // Add to beginning of array
+                if (sendHistory.length > 50) { // Keep only last 50 items
+                    sendHistory.pop();
+                }
+                
+                localStorage.setItem('sendHistory', JSON.stringify(sendHistory));
+                displaySendHistory();
+
+                if (result.ok) {
+                    alert('Notification sent successfully!');
+                    form.reset();
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                const historyItem = {
+                    ...data,
+                    timestamp: new Date().toISOString(),
+                    status: 'error'
+                };
+                
+                sendHistory.unshift(historyItem);
+                localStorage.setItem('sendHistory', JSON.stringify(sendHistory));
+                displaySendHistory();
+                
+                alert('Error sending notification: ' + error.message);
+            }
+        }
+
+        async function fetchNotifications() {
+            const userId = document.getElementById('searchUserId').value;
+            if (!userId) {
+                alert('Please enter a User ID');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/users/${userId}/notifications`);
+                const result = await response.json();
+                
+                const container = document.getElementById('notificationsList');
+                container.innerHTML = '';
+
+                if (result.ok && result.data.length > 0) {
+                    result.data.forEach(notification => {
+                        const notificationElement = document.createElement('div');
+                        notificationElement.className = 'notification-item';
+                        notificationElement.innerHTML = `
+                            <h3>${notification.title}</h3>
+                            <p>${notification.message}</p>
+                            <div class="notification-meta">
+                                <span>Type: ${notification.type}</span>
+                                <span>Status: ${notification.status}</span>
+                                <span>Created: ${new Date(notification.created_at).toLocaleString()}</span>
+                            </div>
+                        `;
+                        container.appendChild(notificationElement);
+                    });
+                } else {
+                    container.innerHTML = '<p class="no-notifications">No notifications found</p>';
+                }
+            } catch (error) {
+                alert('Error fetching notifications: ' + error.message);
+            }
+        }
+
+        document.getElementById('notificationForm').addEventListener('submit', sendNotification);
+    </script>
+</body>
+</html> 
