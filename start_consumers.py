@@ -16,21 +16,18 @@ def run_consumer(consumer_type):
 def main():
     print("=== Starting Notification Consumers ===\n")
     
-    # Create threads for each consumer
     email_thread = Thread(target=run_consumer, args=("email",))
     sms_thread = Thread(target=run_consumer, args=("sms",))
     
     try:
-        # Start both consumers
         email_thread.start()
         print("Email consumer started successfully!")
         
-        time.sleep(2)  # Small delay between starts
+        time.sleep(2) 
         
         sms_thread.start()
         print("SMS consumer started successfully!")
         
-        # Keep the main thread alive
         while True:
             time.sleep(1)
             
