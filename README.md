@@ -189,8 +189,13 @@ rabbitmqctl log_tail
 *Add screenshot showing RabbitMQ dashboard with active queues and message flow*
 
 ### Frontend Interface
-*Add screenshot of the notification ![RabbitMq_log](https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e)![RabbitMQ_queue1](https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373)
-![queue2](https://github.com/user-attachments/assets/62df1039-3d66-4e13-88ed-50b950c2ca57)![Queue3](https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2)
+*Add screenshot of the notification
+![RabbitMq_log<img src="https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e" width="300" />
+![RabbitMQ_queue1]<img src="https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373" width="300" />
+![queue2]<img src="https://github.com/user-attachments/assets/62df1039-3d66-4e13-88ed-50b950c2ca57" width="300" />
+![Queue3]()<img src="https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2" width="300" />
+
+
 
 
 system's frontend interface*
