@@ -132,7 +132,7 @@ curl -X POST "http://localhost:8000/notifications" \
          "recipient_phone": "+1234567890"
      }'
 ```
-###POST
+### POST
 ```$headers = @{
     "Content-Type" = "application/json"
 }
