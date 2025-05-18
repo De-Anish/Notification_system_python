@@ -133,7 +133,8 @@ curl -X POST "http://localhost:8000/notifications" \
      }'
 ```
 ### POST
-```$headers = @{
+```
+$headers = @{
     "Content-Type" = "application/json"
 }
 $body = @{
