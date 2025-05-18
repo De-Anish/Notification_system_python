@@ -17,9 +17,9 @@ pip install fastapi uvicorn python-multipart aio-pika python-jose[cryptography] 
 ```
 
 ### Environment Variables Setup
-1. Copy `.env.example` to `.env`
+1. Copy `example.env` to `.env`
 ```bash
-cp .env.example .env
+cp example.env .env
 ```
 2. Edit `.env` with your credentials:
 ```env
