@@ -132,7 +132,21 @@ curl -X POST "http://localhost:8000/notifications" \
          "recipient_phone": "+1234567890"
      }'
 ```
+###POST
+```$headers = @{
+    "Content-Type" = "application/json"
+}
+$body = @{
+    user_id = "user123"
+    types = @("email", "sms")
+    title = "Test Combined Notification"
+    message = "This is a test notification via both Email and SMS"
+    recipient_email = "user@example.com"
+    recipient_phone = "+1234567890"
+} | ConvertTo-Json
 
+Invoke-RestMethod -Uri "http://localhost:8000/notifications" -Method Post -Headers $headers -Body $body
+```
 ## Access Points
 
 - Frontend UI: Open `index.html` in browser
