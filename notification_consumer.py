@@ -84,16 +84,13 @@ async def main():
     print("\n=== Starting Notification Consumer ===")
     print("Initializing RabbitMQ service...")
     
-    # Initialize RabbitMQ service
     rabbitmq = RabbitMQService()
     
-    # Connect to RabbitMQ
     if not await rabbitmq.connect():
         print("✗ Failed to connect to RabbitMQ")
         return
     print("✓ Successfully connected to RabbitMQ")
 
-    # Setup consumers for each notification type
     print("\nSetting up notification consumers...")
     await rabbitmq.setup_consumer('email_notifications', process_email)
     await rabbitmq.setup_consumer('sms_notifications', process_sms)
@@ -103,7 +100,6 @@ async def main():
     print("Press Ctrl+C to exit")
     
     try:
-        # Keep the consumer running
         while True:
             await asyncio.sleep(1)
     except KeyboardInterrupt:
