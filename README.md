@@ -189,13 +189,22 @@ rabbitmqctl log_tail
 *Add screenshot showing RabbitMQ dashboard with active queues and message flow*
 
 ### Frontend Interface
-*Add screenshot of the notification system's frontend interface*
+*Add screenshot of the notification ![RabbitMq_log](https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e)![RabbitMQ_queue1](https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373)
+![queue2](https://github.com/user-attachments/assets/62df1039-3d66-4e13-88ed-50b950c2ca57)![Queue3](https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2)
+
+
+system's frontend interface*
+![Frontend](https://github.com/user-attachments/assets/6ac7f92c-b59e-467a-9082-eebf5c53497e)
+![SEND_history](https://github.com/user-attachments/assets/ab3aedc2-fc08-453a-b09f-b0f64f615f23)
 
 ### Email Notification
 *Add screenshot of a received email notification*
+![Email_receved](https://github.com/user-attachments/assets/9e36bee3-ce71-40a6-958e-871dee5522e7)
+![Notification On email](https://github.com/user-attachments/assets/98c4d7f6-e994-4cb9-9a1a-6c59a61406e6)
 
 ### SMS Notification
-*Add screenshot of a received SMS notification*
+*Add screenshot of a received SMS notificatio![Notification On email]
+![mobilesms](https://github.com/user-attachments/assets/4af2cfcc-f1b5-4e11-90fd-f3446b34165a)
 
 ## Contributing
 
