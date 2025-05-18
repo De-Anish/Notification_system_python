@@ -188,7 +188,6 @@ rabbitmqctl log_tail
 ### RabbitMQ Dashboard
 <img src="https://github.com/user-attachments/assets/9ad40b1a-fe37-46b8-b910-fdbef25b0d5e" width="300" />
 <img src="https://github.com/user-attachments/assets/85171869-6c82-4d72-a34e-17d2714c5373" width="300" />
-<img src="https://github.com/user-attachments/assets/62df1039-3d66-4e13-88ed-50b950c2ca57" width="300" />
 <img src="https://github.com/user-attachments/assets/fbb87fb3-bf58-4868-91f3-31f3884c85b2" width="300" />
 
 ### Frontend Interface
