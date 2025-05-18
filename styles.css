@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -43,7 +42,6 @@ main {
     gap: 30px;
 }
 
-/* Form styles */
 .notification-form {
     background-color: #fff;
     padding: 30px;
@@ -105,7 +103,6 @@ textarea {
     background-color: #2980b9;
 }
 
-/* Notifications list styles */
 .notifications-list {
     background-color: #fff;
     padding: 30px;
@@ -155,7 +152,6 @@ textarea {
     padding: 20px;
 }
 
-/* Send History styles */
 .send-history {
     background-color: #fff;
     padding: 20px;
@@ -241,7 +237,6 @@ textarea {
     background-color: #c82333;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     main {
         grid-template-columns: 1fr;
