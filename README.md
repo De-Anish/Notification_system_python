@@ -189,53 +189,31 @@ rabbitmqctl log_tail
 ```trxt
 notification_system/
 │
-├── .env                    # Environment variables (not in git)
-├── .env.example           # Example environment variables template
-├── .gitignore             # Git ignore file
-├── README.md              # Project documentation
-├── requirements.txt       # Python dependencies
-├── commands.md            # Common commands reference
+├── .git/
+├── .vscode/
+├── __pycache__/
+├── screenshots/
+│   ├── sms_notification.png
+│   └── email_notification.png
 │
-├── src/                   # Source code directory
-│   ├── __init__.py
-│   ├── main.py           # FastAPI application entry point
-│   ├── rabbitmq_service.py # RabbitMQ connection and operations
-│   │
-│   ├── config/           # Configuration files
-│   │   ├── __init__.py
-│   │   └── settings.py   # App settings and constants
-│   │
-│   ├── models/           # Data models
-│   │   ├── __init__.py
-│   │   └── notifications.py  # Notification models
-│   │
-│   ├── services/         # Business logic
-│   │   ├── __init__.py
-│   │   ├── email_service.py
-│   │   ├── sms_service.py
-│   │   └── notification_service.py
-│   │
-│   └── utils/            # Utility functions
-│       ├── __init__.py
-│       └── helpers.py
+├── main.py
+├── rabbitmq_service.py
+├── notification_consumer.py
+├── notification_types.py
+├── start_consumers.py
 │
-├── static/               # Static files
-│   ├── css/
-│   │   └── styles.css
-│   └── js/
-│       └── main.js
+├── index.html
+├── styles.css
 │
-├── templates/            # HTML templates
-│   └── index.html       # Frontend interface
+├── .env.example
+├── .gitignore
+├── requirements.txt
 │
-├── tests/               # Test files
-│   ├── __init__.py
-│   ├── test_api.py
-│   └── test_services.py
+├── README.md
+├── commands.md
+├── example_requests.md
 │
-└── scripts/             # Utility scripts
-    ├── start_all.bat    # Windows startup script
-    └── start_consumers.py # Consumer startup script
+└── start_all.bat
 ```
 ## Screenshots
 
