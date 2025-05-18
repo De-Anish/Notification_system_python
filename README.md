@@ -198,12 +198,13 @@ rabbitmqctl log_tail
 
 ### Email Notification
 <img src="https://github.com/user-attachments/assets/9e36bee3-ce71-40a6-958e-871dee5522e7" width="300" />
+<img src="https://github.com/user-attachments/assets/98c4d7f6-e994-4cb9-9a1a-6c59a61406e6"  width="600"/>
 
-![Notification On email](https://github.com/user-attachments/assets/98c4d7f6-e994-4cb9-9a1a-6c59a61406e6)
+![Notification On email]()
 
 ### SMS Notification
-*Add screenshot of a received SMS notificatio![Notification On email]
-![mobilesms](https://github.com/user-attachments/assets/4af2cfcc-f1b5-4e11-90fd-f3446b34165a)
+<img src="https://github.com/user-attachments/assets/4af2cfcc-f1b5-4e11-90fd-f3446b34165a"width="600" />
+
 
 ## Contributing
 
