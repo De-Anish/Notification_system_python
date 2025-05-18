@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from fastapi import FastAPI, HTTPException, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
@@ -18,10 +17,8 @@ import os
 from dotenv import load_dotenv
 from rabbitmq_service import RabbitMQService
 
-# Load environment variables from example.env since .env is blocked
 load_dotenv('example.env')
 
-# Debug print environment variables
 print("Environment Variables:")
 print(f"EMAIL_SENDER: {os.getenv('EMAIL_SENDER')}")
 print(f"SMTP_HOST: {os.getenv('SMTP_HOST')}")
@@ -30,10 +27,8 @@ print(f"SMTP_USER: {os.getenv('SMTP_USER')}")
 print(f"TWILIO_ACCOUNT_SID: {os.getenv('TWILIO_ACCOUNT_SID')}")
 print(f"TWILIO_PHONE_NUMBER: {os.getenv('TWILIO_PHONE_NUMBER')}")
 
-# Initialize FastAPI app
 app = FastAPI(title="Notification Service")
 
-# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -48,24 +43,20 @@ async def add_response_headers(request: Request, call_next):
     response.headers["Content-Type"] = "application/json"
     return response
 
-# Email configuration
 EMAIL_SENDER = os.getenv("EMAIL_SENDER")
 SMTP_HOST = os.getenv("SMTP_HOST")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USER = os.getenv("SMTP_USER")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 
-# Twilio configuration
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_PHONE_NUMBER = os.getenv("TWILIO_PHONE_NUMBER")
 twilio_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-# In-memory storage for notifications
 notifications_store: Dict[str, List[Dict]] = {}
 notification_queue: List[Dict] = []
 
-# Add after app initialization
 rabbitmq = RabbitMQService()
 
 class NotificationType(str, Enum):
@@ -180,12 +171,10 @@ async def process_notification(notification: dict, max_retries: int = 3):
 
 @app.on_event("startup")
 async def startup_event():
-    # Connect to RabbitMQ
     await rabbitmq.connect()
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    # Close RabbitMQ connection
     await rabbitmq.close()
 
 @app.post("/notifications")
@@ -193,7 +182,6 @@ async def send_notification(notification: NotificationCreate):
     try:
         notifications = []
         
-        # Process each notification type
         for notification_type in notification.types:
             notification_data = {
                 "id": str(uuid.uuid4()),
@@ -207,10 +195,8 @@ async def send_notification(notification: NotificationCreate):
                 "recipient_phone": notification.recipient_phone
             }
             
-            # Map notification type to queue type
-            queue_type = notification_type.value  # This will be 'email', 'sms', or 'in_app'
+            queue_type = notification_type.value 
             
-            # Publish to RabbitMQ
             success = await rabbitmq.publish_notification(queue_type, notification_data)
             
             if success:
