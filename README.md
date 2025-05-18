@@ -200,7 +200,7 @@ rabbitmqctl log_tail
 <img src="https://github.com/user-attachments/assets/9e36bee3-ce71-40a6-958e-871dee5522e7" width="300" />
 <img src="https://github.com/user-attachments/assets/98c4d7f6-e994-4cb9-9a1a-6c59a61406e6"  width="800"/>
 
-![Notification On email]()
+
 
 ### SMS Notification
 <img src="https://github.com/user-attachments/assets/4af2cfcc-f1b5-4e11-90fd-f3446b34165a" width="600" />
@@ -214,6 +214,3 @@ rabbitmqctl log_tail
 4. Push to the branch
 5. Create a new Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details 
