@@ -32,7 +32,7 @@ cd [repository-name]
 
 2. **Install Python dependencies**
 ```bash
-pip install fastapi uvicorn python-multipart aio-pika python-jose[cryptography] passlib[bcrypt] python-dotenv requests twilio
+pip install -r requirements.txt
 ```
 
 3. **Environment Setup**
