@@ -68,7 +68,6 @@
                     <button onclick="fetchNotifications()" class="search-btn">Search</button>
                 </div>
                 <div id="notificationsList" class="notifications-container">
-                    <!-- Notifications will be displayed here -->
                 </div>
             </section>
 
@@ -76,20 +75,16 @@
                 <h2>Send History</h2>
                 <button onclick="clearHistory()" class="clear-history-btn">Clear History</button>
                 <div id="sendHistory" class="notifications-container">
-                    <!-- Send history will be displayed here -->
                 </div>
             </section>
         </main>
     </div>
 
     <script>
-        // Base URL of your FastAPI backend
         const API_URL = 'http://localhost:8000';
         
-        // Initialize send history from localStorage
         let sendHistory = JSON.parse(localStorage.getItem('sendHistory') || '[]');
         
-        // Display initial history
         displaySendHistory();
 
         function displaySendHistory() {
@@ -171,8 +166,8 @@
                     status: result.ok ? 'success' : 'error'
                 };
                 
-                sendHistory.unshift(historyItem); // Add to beginning of array
-                if (sendHistory.length > 50) { // Keep only last 50 items
+                sendHistory.unshift(historyItem); 
+                if (sendHistory.length > 50) { 
                     sendHistory.pop();
                 }
                 
